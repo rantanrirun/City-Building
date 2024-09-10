@@ -9,7 +9,7 @@ public class VillagerMove : MonoBehaviour
     public Transform target;
     public PlaceObject po;
     private Vector3 targetPos;
-    private float placeDistance = 1.0f;
+    private float placeDistance = 1.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +21,7 @@ public class VillagerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //agentの目的地が有効であり、かつ物をまだ置いてない場合
-        if (agent.destination != null && !po.IsPlaced())
+        if (agent.destination != null && !po.IsPlaced())//agentの目的地が有効であり、かつ物をまだ置いてない場合
         {
             if (IsArriveDestination())
             {
@@ -39,7 +38,7 @@ public class VillagerMove : MonoBehaviour
     ///</summary>
     public void SetTargetDestination(Vector3 position)
     {
-        agent.SetDestination(position);
+        agent.SetDestination(position);//positionはクリックした場所を保存
         targetPos = position;
     }
 
