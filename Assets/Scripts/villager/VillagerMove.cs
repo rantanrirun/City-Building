@@ -43,11 +43,11 @@ public class VillagerMove : MonoBehaviour
     }
 
     ///<summary>
-    ///目的地と村人"VillagerMoveメソッドがセットされてるオブジェクト"の距離が一定以下ならtrue
+    ///AIの目的地と村人"VillagerMoveメソッドがセットされてるオブジェクト"の距離が一定以下ならtrue
     ///</summary>
     public bool IsArriveDestination()
     {
-        if (Vector3.Distance(agent.destination, this.transform.position) <= placeDistance)
+        if (Vector3.Distance(agent.destination, this.transform.position) <= 0f)
         {
             return true;
         }
@@ -57,6 +57,9 @@ public class VillagerMove : MonoBehaviour
         }
     }
 
+    ///<summary>
+    ///クリックした場所と村人"VillagerMoveメソッドがセットされてるオブジェクト"の距離が一定以下ならtrue
+    ///</summary>
     public bool DistanceToPlacePoint()
     {
         if (Vector3.Distance(targetPos, this.transform.position) <= placeDistance)
@@ -66,6 +69,7 @@ public class VillagerMove : MonoBehaviour
         else
         {
             Debug.Log("届かないよ");
+            po.SetPlaced(true);
             return false;
         }
     }

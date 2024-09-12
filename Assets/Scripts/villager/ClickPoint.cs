@@ -7,7 +7,7 @@ public class ClickPoint : MonoBehaviour
     private Vector3 targetPosition;
     public VillagerMove villagerMove;
     public PlaceObject po;
-
+    public WorldGrid wg;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +28,11 @@ public class ClickPoint : MonoBehaviour
                 targetPosition = hit.point;
                 targetPosition = new Vector3(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y), Mathf.RoundToInt(targetPosition.z));
                 //Debug.Log("座標" + targetPosition);
-                villagerMove.SetTargetDestination(targetPosition);
-                po.SetPlaced(false);
+                if (wg.CheckGrid(targetPosition))
+                {
+                    villagerMove.SetTargetDestination(targetPosition);
+                    po.SetPlaced(false);
+                }
             }
         }
     }

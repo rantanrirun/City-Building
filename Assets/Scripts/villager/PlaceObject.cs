@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaceObject : MonoBehaviour
 {
     public GameObject put;
-    public bool placed;
+    public bool placed;//trueかfalseを返す　trueが置いた、falseが置いてない
     private WorldGrid wg;
     private Vector3 placePosition;
     // Start is called before the first frame update
