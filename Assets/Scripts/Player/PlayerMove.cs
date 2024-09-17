@@ -7,7 +7,6 @@ public class PlayerMove : MonoBehaviour
 {
     private Vector3 pos;
     float x, y, z;
-    float fov;
     float moveSpeed = 10.0f;
     //マウス感度
     [SerializeField, Range(1.0f, 150.0f)]
@@ -19,12 +18,14 @@ public class PlayerMove : MonoBehaviour
     private Vector3 _presentPlayerRotation;
     private Vector3 _presentCamPos;
     public Camera cam;
+    public GameObject xrotation;
+    public float max = 20f; //ズーム最大距離
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
-        _presentCamRotation = cam.transform.localEulerAngles;
+        _presentCamRotation = xrotation.transform.localEulerAngles;
         _presentPlayerRotation = transform.eulerAngles;
     }
 
@@ -58,7 +59,7 @@ public class PlayerMove : MonoBehaviour
             _presentPlayerRotation.y = _presentPlayerRotation.y + x * _mouseSensitive * 1f;
             _presentCamRotation.x = Mathf.Clamp(_presentCamRotation.x, -80f, 80f);
 
-            cam.transform.localEulerAngles = _presentCamRotation;
+            xrotation.transform.localEulerAngles = _presentCamRotation;
             transform.eulerAngles = _presentPlayerRotation;
         }
     }
@@ -80,12 +81,20 @@ public class PlayerMove : MonoBehaviour
 
     private void CameraZoom()
     {
+        float msd = Input.mouseScrollDelta.y * 10;
+        Vector3 tlp = cam.transform.localPosition;
+        tlp.z += msd;
+        tlp.z = Mathf.Clamp(tlp.z, 0f, max);
+        cam.transform.localPosition = tlp;
+        /*
         fov = Input.mouseScrollDelta.y * 10;
         float camfov = cam.fieldOfView;
         camfov += fov;
         camfov = Mathf.Clamp(camfov, 50f, 100f);
         cam.fieldOfView = camfov;
-        //Debug.Log("cam.fieldOfView" + cam.fieldOfView);
-        //Debug.Log("fov" + fov);
+        Debug.Log("cam.fieldOfView" + cam.fieldOfView);
+        Debug.Log("fov" + fov);
+        */
     }
+
 }
