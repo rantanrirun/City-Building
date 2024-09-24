@@ -31,7 +31,7 @@ public class PlaceObject : MonoBehaviour
             Debug.Log("置く物ないよ");
             return;
         }
-        if (wg.CheckGrid(position))
+        if (!wg.CheckGridAvailable(position))
         {
             Debug.Log("配置済み");
             placed = true;
@@ -46,7 +46,7 @@ public class PlaceObject : MonoBehaviour
         }
     }
     ///<summary>
-    ///置いたか置いてないかを返す。
+    ///置き終わったか否かを返す。置き終わったらtrue.
     ///</summary>
     public bool IsPlaced()
     {

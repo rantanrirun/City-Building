@@ -32,19 +32,21 @@ public class WorldGrid : MonoBehaviour
     }
 
     ///<summary>
-    ///既に物が配置済みか確認するメソッド。何もない[0]”以外”の場合に true を返す。
+    ///既に物が配置済みか確認するメソッド。何もない[0]の場合に true を返す。
     ///</summary>
-    public bool CheckGrid(Vector3 pos)
+    public bool CheckGridAvailable(Vector3 pos)
     {
-        //Debug.Log("Grid:" + pos.x + ", " + pos.z + ": " + ground[(int)pos.x, (int)pos.z].objectType);
+        Debug.Log("Grid(" + pos.x + ", " + pos.z + ") : " + ground[(int)pos.x + 500, (int)pos.z + 500].objectType);
 
-        if (ground[(int)pos.x + 500, (int)pos.z + 500].objectType == 0)
+        if (ground[(int)pos.x + 500, (int)pos.z + 500].objectType == 0)//グリッドをずらすのではなく、クリックポイントを+500ずらしている。
         {
-            return false;
+            Debug.Log("CheckGridAvailable true");
+            return true;
         }
         else
         {
-            return true;
+            Debug.Log("CheckGridAvailable false");
+            return false;
         }
     }
 
@@ -59,14 +61,14 @@ public class WorldGrid : MonoBehaviour
     }
 
     [Serializable]
-public class GameGrid
-{
-    public int objectType;//置いてあるものの種類
-    /*
-    0:何もない
-    1:ブロック
-    2:
-    */
-    public GameObject item;//置いてあるものそのもの
-}
+    public class GameGrid
+    {
+        public int objectType;//置いてあるものの種類
+        /*
+        0:何もない
+        1:ブロック
+        2:
+        */
+        public GameObject item;//置いてあるものそのもの
+    }
 }

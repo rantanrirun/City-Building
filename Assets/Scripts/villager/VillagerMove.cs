@@ -25,6 +25,7 @@ public class VillagerMove : MonoBehaviour
         {
             if (IsArriveDestination())
             {
+                Debug.Log("arrive");
                 if (DistanceToPlacePoint())
                 {
                     po.Installation(targetPos);
@@ -47,7 +48,7 @@ public class VillagerMove : MonoBehaviour
     ///</summary>
     public bool IsArriveDestination()
     {
-        if (Vector3.Distance(agent.destination, this.transform.position) <= 0f)
+        if (Vector3.Distance(agent.destination, this.transform.position) <= 1f)
         {
             return true;
         }
