@@ -60,4 +60,9 @@ public class PlaceObject : MonoBehaviour
     {
         placed = value;
     }
+
+    public void Pocket(int item)
+    {
+
+    }
 }

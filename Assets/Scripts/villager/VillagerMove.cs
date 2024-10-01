@@ -9,7 +9,7 @@ public class VillagerMove : MonoBehaviour
     public Transform target;
     public PlaceObject po;
     private Vector3 targetPos;
-    private float placeDistance = 1.1f;
+    private float placeDistance = 1f;
 
     // Start is called before the first frame update
     void Start()

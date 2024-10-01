@@ -31,6 +31,7 @@ public class ClickPoint : MonoBehaviour
                 if (wg.CheckGridAvailable(targetPosition))
                 {
                     villagerMove.SetTargetDestination(targetPosition);
+                    //po.Pocket(item);
                     po.SetPlaced(false);
                 }
             }
