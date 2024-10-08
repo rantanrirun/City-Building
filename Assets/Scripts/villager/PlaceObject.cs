@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlaceObject : MonoBehaviour
 {
-    public GameObject put;
+    public GameObject put;//置くblockのこと
     public bool placed;//trueかfalseを返す　trueが置いた、falseが置いてない
     private WorldGrid wg;
     private Vector3 placePosition;
@@ -26,7 +26,7 @@ public class PlaceObject : MonoBehaviour
     ///</summary>
     public void Installation(Vector3 position)
     {
-        if (put == null)
+        if (put == null)//putが何もない場合(バグ対策)
         {
             Debug.Log("置く物ないよ");
             return;
