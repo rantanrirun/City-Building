@@ -5,9 +5,10 @@ using UnityEngine;
 public class ClickPoint : MonoBehaviour
 {
     private Vector3 targetPosition;
-    public VillagerMove villagerMove;
+    public TaskList taskList;
     public PlaceObject po;
     public WorldGrid wg;
+    public GameObject item;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +31,8 @@ public class ClickPoint : MonoBehaviour
                 //Debug.Log("座標" + targetPosition);
                 if (wg.CheckGridAvailable(targetPosition))
                 {
-                    villagerMove.SetTargetDestination(targetPosition);
-                    //po.Pocket(item);
+                    taskList.AddQueueBlockSet(targetPosition, item);
+                    //taskList.Pocket(item);
                     po.SetPlaced(false);
                 }
             }
