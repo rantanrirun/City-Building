@@ -31,7 +31,7 @@ public class ClickPoint : MonoBehaviour
                 //Debug.Log("座標" + targetPosition);
                 if (wg.CheckGridAvailable(targetPosition))
                 {
-                    taskList.AddQueueBlockSet(targetPosition, item);
+                    taskList.EnQueueBlockSet(targetPosition, item);
                     //taskList.Pocket(item);
                     po.SetPlaced(false);
                 }

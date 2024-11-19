@@ -7693,9 +7693,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae117bec588d4eca92ba24dd7ee1865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  villagerMove: {fileID: 1029935369}
+  taskList: {fileID: 0}
   po: {fileID: 1494645164}
   wg: {fileID: 465096737}
+  item: {fileID: 1392933134637887725, guid: 71eaed1de4c144e4eb10b7bb085de936, type: 3}
 --- !u!1 &1968495413
 GameObject:
   m_ObjectHideFlags: 0

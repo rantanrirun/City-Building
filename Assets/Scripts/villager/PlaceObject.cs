@@ -45,6 +45,7 @@ public class PlaceObject : MonoBehaviour
             wg.SetValueToWorldGrid(position, put);
         }
     }
+
     ///<summary>
     ///置き終わったか否かを返す。置き終わったらtrue.
     ///</summary>
@@ -60,4 +61,5 @@ public class PlaceObject : MonoBehaviour
     {
         placed = value;
     }
+
 }
