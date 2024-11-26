@@ -7,7 +7,7 @@ public class VillagerMove : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Transform target;
-    public PlaceObject po;
+    private PlaceObject po;
     private Vector3 targetPos;
     private float placeDistance = 1f;
 
@@ -16,22 +16,12 @@ public class VillagerMove : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.transform.position);
+        po = this.GetComponent<PlaceObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (agent.destination != null && !po.IsPlaced())//agentの目的地が有効であり、かつ物をまだ置いてない場合
-        {
-            if (IsArriveDestination())
-            {
-                Debug.Log("arrive");
-                if (DistanceToPlacePoint())
-                {
-                    po.Installation(targetPos);
-                }
-            }
-        }
     }
 
     ///<summary>

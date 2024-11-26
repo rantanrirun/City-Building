@@ -5,14 +5,14 @@ using UnityEngine;
 public class ClickPoint : MonoBehaviour
 {
     private Vector3 targetPosition;
-    public TaskList taskList;
+    public TaskList tl;
     public PlaceObject po;
     public WorldGrid wg;
     public GameObject item;
     // Start is called before the first frame update
     void Start()
     {
-
+        tl = GameObject.Find("System").GetComponent<TaskList>();
     }
 
     // Update is called once per frame
@@ -31,9 +31,7 @@ public class ClickPoint : MonoBehaviour
                 //Debug.Log("座標" + targetPosition);
                 if (wg.CheckGridAvailable(targetPosition))
                 {
-                    taskList.EnQueueBlockSet(targetPosition, item);
-                    //taskList.Pocket(item);
-                    po.SetPlaced(false);
+                    tl.EnQueueBlockSet(targetPosition, item);
                 }
             }
         }

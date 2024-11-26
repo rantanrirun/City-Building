@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class PlaceObject : MonoBehaviour
 {
-    public GameObject put;//置くblockのこと
-    public bool placed;//trueかfalseを返す　trueが置いた、falseが置いてない
+    public GameObject block;//置くblockのこと
+    private bool placed;//trueかfalseを返す　trueが置いた、falseが置いてない
     private WorldGrid wg;
+    private VillagerMove vm;
     private Vector3 placePosition;
+    private Vector3 position;
     // Start is called before the first frame update
     void Start()
     {
         placed = false;
         wg = GameObject.Find("World Grid").GetComponent<WorldGrid>();
+        vm = this.GetComponent<VillagerMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsPlaced())//agentの目的地が有効であり、かつ物をまだ置いてない場合
+        {
+            if (vm.IsArriveDestination())
+            {
+                Debug.Log("arrive");
+                if (vm.DistanceToPlacePoint())
+                {
+                    Installation(position);
+                }
+            }
+        }
 
     }
 
@@ -26,7 +40,7 @@ public class PlaceObject : MonoBehaviour
     ///</summary>
     public void Installation(Vector3 position)
     {
-        if (put == null)//putが何もない場合(バグ対策)
+        if (block == null)//blockが何もない場合(バグ対策)
         {
             Debug.Log("置く物ないよ");
             return;
@@ -39,10 +53,10 @@ public class PlaceObject : MonoBehaviour
         else
         {
             //placePosition = position + new Vector3(0.5f, 0f, 0.5f);
-            //putを目的地の場所に初期状態でコピーする。
-            Instantiate(put, position, Quaternion.identity);
+            //blockを目的地の場所に初期状態でコピーする。
+            Instantiate(block, position, Quaternion.identity);
             placed = true;
-            wg.SetValueToWorldGrid(position, put);
+            wg.SetValueToWorldGrid(position, block);
         }
     }
 
@@ -62,4 +76,9 @@ public class PlaceObject : MonoBehaviour
         placed = value;
     }
 
+    public void SetPlaceBlock(TaskList.BlockInfo info)
+    {
+        position = info.position;
+        block = info.block;
+    }
 }
