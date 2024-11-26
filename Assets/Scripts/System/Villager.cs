@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Villager : MonoBehaviour
 {
-    public bool IsFree;
+    private bool IsFree;
     private TaskList tl;
+    private PlaceObject po;
+    private VillagerMove vm;
+    private TaskList.BlockInfo getPlaceBlock;
     // Start is called before the first frame update
     void Start()
     {
         IsFree = true;
+        tl = GameObject.Find("System").GetComponent<TaskList>();
+        po = this.GetComponent<PlaceObject>();
+        vm = this.GetComponent<VillagerMove>();
     }
 
     // Update is called once per frame
@@ -17,7 +23,10 @@ public class Villager : MonoBehaviour
     {
         if (IsFree)
         {
-
+            GetPlaceBlock();
+            po.SetPlaceBlock(getPlaceBlock);
+            po.SetPlaced(false);
+            vm.SetTargetDestination(getPlaceBlock.position);
         }
     }
     ///<summary>
@@ -36,8 +45,8 @@ public class Villager : MonoBehaviour
         IsFree = value;
     }
 
-    public void A()
+    public void GetPlaceBlock()
     {
-        TaskList.BlockInfo a = tl.DeQueueBlockSet();
+        getPlaceBlock = tl.DeQueueBlockSet();
     }
 }
