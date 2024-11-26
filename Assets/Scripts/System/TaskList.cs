@@ -37,7 +37,12 @@ public class TaskList : MonoBehaviour
 
     public BlockInfo DeQueueBlockSet()
     {
+        if (blockSetTasks.Count == 0)
+        {
+            return null;
+        }
         BlockInfo bo = blockSetTasks.Dequeue();
+        Debug.Log("3 : " + bo.position + bo.block);
         return bo;
     }
 }

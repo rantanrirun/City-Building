@@ -21,12 +21,17 @@ public class Villager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsFree)
+        if (GetFree())
         {
             GetPlaceBlock();
-            po.SetPlaceBlock(getPlaceBlock);
-            po.SetPlaced(false);
-            vm.SetTargetDestination(getPlaceBlock.position);
+            if (getPlaceBlock != null)
+            {
+                po.SetPlaceBlock(getPlaceBlock);
+                po.SetPlaced(false);
+                vm.SetTargetDestination(getPlaceBlock.position);
+                SetFree(false);
+                Debug.Log("5 : ");
+            }
         }
     }
     ///<summary>

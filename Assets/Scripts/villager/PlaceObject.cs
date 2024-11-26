@@ -8,6 +8,7 @@ public class PlaceObject : MonoBehaviour
     private bool placed;//trueかfalseを返す　trueが置いた、falseが置いてない
     private WorldGrid wg;
     private VillagerMove vm;
+    private Villager villager;
     private Vector3 placePosition;
     private Vector3 position;
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class PlaceObject : MonoBehaviour
         placed = false;
         wg = GameObject.Find("World Grid").GetComponent<WorldGrid>();
         vm = this.GetComponent<VillagerMove>();
+        villager = this.GetComponent<Villager>();
     }
 
     // Update is called once per frame
@@ -58,6 +60,7 @@ public class PlaceObject : MonoBehaviour
             placed = true;
             wg.SetValueToWorldGrid(position, block);
         }
+        villager.SetFree(true);
     }
 
     ///<summary>
@@ -76,6 +79,9 @@ public class PlaceObject : MonoBehaviour
         placed = value;
     }
 
+    ///<summary>
+    ///それぞれを変数に代入する。
+    ///</summary>
     public void SetPlaceBlock(TaskList.BlockInfo info)
     {
         position = info.position;
