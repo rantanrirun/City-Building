@@ -42,7 +42,6 @@ public class TaskList : MonoBehaviour
             return null;
         }
         BlockInfo bo = blockSetTasks.Dequeue();
-        Debug.Log("3 : " + bo.position + bo.block);
         return bo;
     }
 }

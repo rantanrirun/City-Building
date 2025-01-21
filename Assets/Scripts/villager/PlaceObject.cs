@@ -32,6 +32,10 @@ public class PlaceObject : MonoBehaviour
                 {
                     Installation(position);
                 }
+                else
+                {
+                    villager.SetFree(true);
+                }
             }
         }
 

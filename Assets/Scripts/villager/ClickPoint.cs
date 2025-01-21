@@ -29,11 +29,15 @@ public class ClickPoint : MonoBehaviour
                 targetPosition = hit.point;
                 targetPosition = new Vector3(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y), Mathf.RoundToInt(targetPosition.z));
                 //Debug.Log("座標" + targetPosition);
-                if (wg.CheckGridAvailable(targetPosition))
-                {
-                    tl.EnQueueBlockSet(targetPosition, item);
-                }
+                SetTask();
             }
+        }
+    }
+    public void SetTask()
+    {
+        if (wg.CheckGridAvailable(targetPosition))
+        {
+            tl.EnQueueBlockSet(targetPosition, item);
         }
     }
 }

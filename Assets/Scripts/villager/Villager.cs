@@ -23,15 +23,7 @@ public class Villager : MonoBehaviour
     {
         if (GetFree())
         {
-            GetPlaceBlock();
-            if (getPlaceBlock != null)
-            {
-                po.SetPlaceBlock(getPlaceBlock);
-                po.SetPlaced(false);
-                vm.SetTargetDestination(getPlaceBlock.position);
-                SetFree(false);
-                Debug.Log("5 : ");
-            }
+            SetPlaceBlock();
         }
     }
     ///<summary>
@@ -49,9 +41,19 @@ public class Villager : MonoBehaviour
     {
         IsFree = value;
     }
-
     public void GetPlaceBlock()
     {
         getPlaceBlock = tl.DeQueueBlockSet();
+    }
+    public void SetPlaceBlock()
+    {
+        GetPlaceBlock();
+        if (getPlaceBlock != null)
+        {
+            po.SetPlaceBlock(getPlaceBlock);
+            po.SetPlaced(false);
+            vm.SetTargetDestination(getPlaceBlock.position);
+            SetFree(false);
+        }
     }
 }
