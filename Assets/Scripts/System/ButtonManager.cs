@@ -7,10 +7,12 @@ using System.Reflection;
 //
 public class ButtonManager : MonoBehaviour
 {
-    public List<Button> baseButtonList = new List<Button>();
+    public List<Button> baseButtons = new List<Button>();
     public List<GameObject> childButtonList = new List<GameObject>();
+    public List<Button> childButtons = new List<Button>();
+    public List<GameObject> grandChildButtonList = new List<GameObject>();
     private int lastButtonNumber;
-    public EventTrigger eventTrigger;
+    private int lastChildButtonNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -20,27 +22,40 @@ public class ButtonManager : MonoBehaviour
             foreach (GameObject item in childButtonList)
                 item.gameObject.SetActive(false);
         }
-        if (baseButtonList != null)
+        if (grandChildButtonList != null)
         {
-            for (int i = 0; i < baseButtonList.Count; i++)
+            foreach (GameObject item in grandChildButtonList)
+                item.gameObject.SetActive(false);
+        }
+        if (baseButtons != null)
+        {
+            for (int i = 0; i < baseButtons.Count; i++)
             {
                 int j = i;
-                baseButtonList[i].onClick.AddListener(() => OnButtonClick(j));
+                baseButtons[i].onClick.AddListener(() => OnButtonClick(j));
             }
         }
-
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerDown;
-        entry.callback.AddListener((x) =>
+        if (childButtons != null)
         {
-            Trigger(x);
-        });
-        eventTrigger.triggers.Add(entry);
+            for (int i = 0; i < childButtons.Count; i++)
+            {
+                int k = i;
+                childButtons[i].onClick.AddListener(() => OnChildButtonClick(k));
+            }
+        }
     }
     // Update is called once per frame
     void Update()
     {
-
+        if (EventSystem.current != null && !EventSystem.current.IsPointerOverGameObject())
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                childButtonList[lastButtonNumber].gameObject.SetActive(false);
+                grandChildButtonList[lastChildButtonNumber].gameObject.SetActive(false);
+                Debug.Log("Trigger" + lastButtonNumber);
+            }
+        }
     }
     ///<summary>
     ///ボタンのON/OFFをまとめて管理する
@@ -51,15 +66,18 @@ public class ButtonManager : MonoBehaviour
         {
             childButtonList[lastButtonNumber].gameObject.SetActive(false);
             lastButtonNumber = i;
+            grandChildButtonList[lastChildButtonNumber].gameObject.SetActive(false);
+            lastChildButtonNumber = i;
         }
         childButtonList[i].gameObject.SetActive(!childButtonList[i].gameObject.activeSelf);//押されたボタンが開いてたら閉じ、閉じてたら開く
     }
-    void Trigger(BaseEventData baseEventData)
+    void OnChildButtonClick(int i)
     {
-        if (baseEventData.pointerId == -1)
+        if (i != lastChildButtonNumber)//別のボタンを押したら前のボタンを閉じる
         {
-            childButtonList[lastButtonNumber].gameObject.SetActive(false);
+            grandChildButtonList[lastChildButtonNumber].gameObject.SetActive(false);
+            lastChildButtonNumber = i;
         }
-        Debug.Log("Trigger" + lastButtonNumber);
+        grandChildButtonList[i].gameObject.SetActive(!grandChildButtonList[i].gameObject.activeSelf);//押されたボタンが開いてたら閉じ、閉じてたら開く
     }
 }
