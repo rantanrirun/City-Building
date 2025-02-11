@@ -24,7 +24,7 @@ public class TaskList : MonoBehaviour
     }
 
     ///<summary>
-    ///置きたい場所とブロックという情報をQueueに追加。
+    ///置きたい位置とブロックという情報をQueueに追加。
     ///</summary>
     public void EnQueueBlockSet(Vector3 position, GameObject block)
     {
@@ -34,7 +34,10 @@ public class TaskList : MonoBehaviour
         temp.block = block;//tempのblockという場所にblockという情報を入れた。
         blockSetTasks.Enqueue(temp);//tempをblockSetTasksに追加。
     }
-
+    /// <summary>
+    /// 置きたい位置とブロックという情報をQueueから取り出す。
+    /// </summary>
+    /// <returns>位置・ブロック</returns>
     public BlockInfo DeQueueBlockSet()
     {
         if (blockSetTasks.Count == 0)

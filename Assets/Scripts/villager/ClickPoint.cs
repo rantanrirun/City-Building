@@ -38,6 +38,9 @@ public class ClickPoint : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Queueに登録する情報(置く位置と置くブロック)
+    /// </summary>
     public void SetTask()
     {
         if (wg.CheckGridAvailable(targetPosition))
@@ -45,5 +48,4 @@ public class ClickPoint : MonoBehaviour
             tl.EnQueueBlockSet(targetPosition, item);
         }
     }
-
 }

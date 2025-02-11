@@ -58,7 +58,7 @@ public class ButtonManager : MonoBehaviour
         }
     }
     ///<summary>
-    ///ボタンのON/OFFをまとめて管理する
+    ///子供ボタンのON/OFFをまとめて管理する
     ///</summary>
     void OnButtonClick(int i)
     {
@@ -71,6 +71,9 @@ public class ButtonManager : MonoBehaviour
         }
         childButtonList[i].gameObject.SetActive(!childButtonList[i].gameObject.activeSelf);//押されたボタンが開いてたら閉じ、閉じてたら開く
     }
+    ///<summary>
+    ///孫ボタンのON/OFFをまとめて管理する
+    ///</summary>
     void OnChildButtonClick(int i)
     {
         if (i != lastChildButtonNumber)//別のボタンを押したら前のボタンを閉じる
