@@ -6,14 +6,16 @@ using UnityEngine.EventSystems;
 public class ClickPoint : MonoBehaviour
 {
     private Vector3 targetPosition;
-    public TaskList tl;
+    public TaskList publicTl;
     public PlaceObject po;
     public WorldGrid wg;
     public GameObject item;
+    [SerializeField] private Villager villager;
     // Start is called before the first frame update
     void Start()
     {
-        tl = GameObject.Find("System").GetComponent<TaskList>();
+        publicTl = GameObject.Find("System").GetComponent<TaskList>();
+        villager = null;
     }
 
     // Update is called once per frame
@@ -31,17 +33,32 @@ public class ClickPoint : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                targetPosition = hit.point;
-                targetPosition = new Vector3(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y), Mathf.RoundToInt(targetPosition.z));
-                //Debug.Log("座標" + targetPosition);
-                SetTask();
+                if (hit.collider.gameObject.GetComponent<Villager>())
+                {
+                    villager = hit.collider.gameObject.GetComponent<Villager>();
+                    Debug.Log(hit.collider.gameObject.name);
+                }
+                else if (villager)
+                {
+                    targetPosition = hit.point;
+                    targetPosition = new Vector3(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y), Mathf.RoundToInt(targetPosition.z));
+                    Debug.Log("SetmyTl");
+                    SetTask(villager.GetMyTl());
+                }
+                else
+                {
+                    targetPosition = hit.point;
+                    targetPosition = new Vector3(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y), Mathf.RoundToInt(targetPosition.z));
+                    //Debug.Log("座標" + targetPosition);
+                    SetTask(publicTl);
+                }
             }
         }
     }
     /// <summary>
     /// Queueに登録する情報(置く位置と置くブロック)
     /// </summary>
-    public void SetTask()
+    public void SetTask(TaskList tl)
     {
         if (wg.CheckGridAvailable(targetPosition))
         {

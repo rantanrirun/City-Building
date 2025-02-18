@@ -5,7 +5,8 @@ using UnityEngine;
 public class Villager : MonoBehaviour
 {
     private bool IsFree;
-    private TaskList tl;
+    private TaskList publicTl;
+    private TaskList myTl;
     private PlaceObject po;
     private VillagerMove vm;
     private TaskList.BlockInfo getPlaceBlock;
@@ -13,7 +14,8 @@ public class Villager : MonoBehaviour
     void Start()
     {
         IsFree = true;
-        tl = GameObject.Find("System").GetComponent<TaskList>();
+        publicTl = GameObject.Find("System").GetComponent<TaskList>();
+        myTl = this.GetComponent<TaskList>();
         po = this.GetComponent<PlaceObject>();
         vm = this.GetComponent<VillagerMove>();
     }
@@ -41,10 +43,20 @@ public class Villager : MonoBehaviour
     {
         IsFree = value;
     }
+    ///<summary>
+    ///タスクの取得
+    ///</summary>
     public void GetPlaceBlock()
     {
-        getPlaceBlock = tl.DeQueueBlockSet();
+        getPlaceBlock = myTl.DeQueueBlockSet();
+        if (getPlaceBlock == null)
+        {
+            getPlaceBlock = publicTl.DeQueueBlockSet();
+        }
     }
+    ///<summary>
+    ///タスクを消化する
+    ///</summary>
     public void SetPlaceBlock()
     {
         GetPlaceBlock();
@@ -55,5 +67,9 @@ public class Villager : MonoBehaviour
             vm.SetTargetDestination(getPlaceBlock.position);
             SetFree(false);
         }
+    }
+    public TaskList GetMyTl()
+    {
+        return myTl;
     }
 }
