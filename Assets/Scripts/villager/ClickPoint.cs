@@ -10,6 +10,7 @@ public class ClickPoint : MonoBehaviour
     public PlaceObject po;
     public WorldGrid wg;
     public GameObject item;
+    public VillagerUI vu;
     [SerializeField] private Villager villager;
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class ClickPoint : MonoBehaviour
                 if (hit.collider.gameObject.GetComponent<Villager>())
                 {
                     villager = hit.collider.gameObject.GetComponent<Villager>();
+                    vu.ViewPanel(villager);
                     Debug.Log(hit.collider.gameObject.name);
                 }
                 else if (villager)
@@ -64,5 +66,9 @@ public class ClickPoint : MonoBehaviour
         {
             tl.EnQueueBlockSet(targetPosition, item);
         }
+    }
+    public void ClearVillager()
+    {
+        villager = null;
     }
 }

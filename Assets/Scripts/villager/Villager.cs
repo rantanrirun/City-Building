@@ -10,6 +10,7 @@ public class Villager : MonoBehaviour
     private PlaceObject po;
     private VillagerMove vm;
     private TaskList.BlockInfo getPlaceBlock;
+    public string myName;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class Villager : MonoBehaviour
         myTl = this.GetComponent<TaskList>();
         po = this.GetComponent<PlaceObject>();
         vm = this.GetComponent<VillagerMove>();
+        myName = gameObject.name;
     }
 
     // Update is called once per frame

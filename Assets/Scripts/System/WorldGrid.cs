@@ -49,6 +49,21 @@ public class WorldGrid : MonoBehaviour
             return false;
         }
     }
+    public GameObject GetGridItem(Vector3 pos)
+    {
+        Debug.Log("Grid(" + pos.x + ", " + pos.z + ") : " + ground[(int)pos.x + 500, (int)pos.z + 500].objectType);
+
+        if (ground[(int)pos.x + 500, (int)pos.z + 500].objectType == 0)//グリッドをずらすのではなく、クリックポイントを+500ずらしている。
+        {
+            Debug.Log("No Object");
+            return null;
+        }
+        else
+        {
+            Debug.Log("Yes Object");
+            return ground[(int)pos.x + 500, (int)pos.z + 500].item;
+        }
+    }
 
     ///<summary>
     ///配列に保存するメソッド。
