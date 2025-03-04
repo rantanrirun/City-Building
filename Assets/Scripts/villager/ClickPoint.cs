@@ -62,10 +62,21 @@ public class ClickPoint : MonoBehaviour
     /// </summary>
     public void SetTask(TaskList tl)
     {
-        if (wg.CheckGridAvailable(targetPosition))
+        if (item != null)
         {
-            tl.EnQueueBlockSet(targetPosition, item);
+            if (wg.CheckGridAvailable(targetPosition))
+            {
+                tl.EnQueueBlockSet(targetPosition, item, true);
+            }
         }
+        else
+        {
+            if (!wg.CheckGridAvailable(targetPosition))
+            {
+                tl.EnQueueBlockSet(targetPosition, item, false);
+            }
+        }
+
     }
     public void ClearVillager()
     {

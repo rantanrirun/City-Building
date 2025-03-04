@@ -8,6 +8,7 @@ public class Villager : MonoBehaviour
     private TaskList publicTl;
     private TaskList myTl;
     private PlaceObject po;
+    private DeleteObject dlo;
     private VillagerMove vm;
     private TaskList.BlockInfo getPlaceBlock;
     public string myName;
@@ -18,6 +19,7 @@ public class Villager : MonoBehaviour
         publicTl = GameObject.Find("System").GetComponent<TaskList>();
         myTl = this.GetComponent<TaskList>();
         po = this.GetComponent<PlaceObject>();
+        dlo = this.GetComponent<DeleteObject>();
         vm = this.GetComponent<VillagerMove>();
         myName = gameObject.name;
     }
@@ -64,10 +66,20 @@ public class Villager : MonoBehaviour
         GetPlaceBlock();
         if (getPlaceBlock != null)
         {
-            po.SetPlaceBlock(getPlaceBlock);
-            po.SetPlaced(false);
-            vm.SetTargetDestination(getPlaceBlock.position);
-            SetFree(false);
+            if (getPlaceBlock.isPlace)
+            {
+                po.SetPlaceBlock(getPlaceBlock);
+                po.SetPlaced(false);
+                vm.SetTargetDestination(getPlaceBlock.position);
+                SetFree(false);
+            }
+            else
+            {
+                dlo.SetDeleteBlock(getPlaceBlock);
+                dlo.SetPlaced(false);
+                vm.SetTargetDestination(getPlaceBlock.position);
+                SetFree(false);
+            }
         }
     }
     public TaskList GetMyTl()

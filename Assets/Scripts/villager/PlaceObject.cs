@@ -60,9 +60,9 @@ public class PlaceObject : MonoBehaviour
         {
             //placePosition = position + new Vector3(0.5f, 0f, 0.5f);
             //blockを目的地の場所に初期状態でコピーする。
-            Instantiate(block, position, Quaternion.identity);
+            GameObject placedObj = Instantiate(block, position, Quaternion.identity);
             placed = true;
-            wg.SetValueToWorldGrid(position, block);
+            wg.SetValueToWorldGrid(position, placedObj);
         }
         villager.SetFree(true);
     }

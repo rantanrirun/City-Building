@@ -1002,6 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1392933134637887725, guid: 71eaed1de4c144e4eb10b7bb085de936, type: 3}
+  isDelete: 0
 --- !u!1 &465096735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +1058,7 @@ GameObject:
   - component: {fileID: 582880998}
   - component: {fileID: 582880997}
   - component: {fileID: 582880996}
+  - component: {fileID: 582880999}
   m_Layer: 5
   m_Name: Delete
   m_TagString: Untagged
@@ -1167,6 +1169,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582880994}
   m_CullTransparentMesh: 1
+--- !u!114 &582880999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582880994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de7c22f8bb6844efbdf6b4b8a5eea70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block: {fileID: 0}
+  isDelete: 1
 --- !u!1 &690174435
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2334,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7706231642584975358, guid: 11415c4c4aed54941b941e551926a213, type: 3}
   m_PrefabInstance: {fileID: 7706231641092488786}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859143729}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4eece39ed1224706847ead01223ca56, type: 3}
@@ -2945,24 +2961,6 @@ MonoBehaviour:
   villagerPanel: {fileID: 836071696}
   clickPoint: {fileID: 1763695536}
   nameText: {fileID: 339662418}
---- !u!1 &1859143729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7706231642584975353, guid: 11415c4c4aed54941b941e551926a213, type: 3}
-  m_PrefabInstance: {fileID: 7706231641092488786}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1859143730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859143729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc327a79a3ecc42da82c6c11665896bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  block: {fileID: 0}
 --- !u!1 &1882602086
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,6 +3351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 4651550308173267289, guid: f8c37ba2ab4894762ad5e71fd2c49823, type: 3}
+  isDelete: 0
 --- !u!1 &1968495413
 GameObject:
   m_ObjectHideFlags: 0
@@ -3588,7 +3587,6 @@ MonoBehaviour:
   - {fileID: 438395506}
   childButtons:
   - {fileID: 1687752843}
-  - {fileID: 582880996}
   grandChildButtonList:
   - {fileID: 149780338}
   - {fileID: 1448639937}

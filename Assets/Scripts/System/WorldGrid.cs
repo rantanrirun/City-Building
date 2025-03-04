@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class WorldGrid : MonoBehaviour
 {
-    public GameGrid[,] ground = new GameGrid[1000, 1000];
+    [SerializeField]
+    public GameGrid[,,] ground = new GameGrid[1000, 100, 1000];
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +23,14 @@ public class WorldGrid : MonoBehaviour
     {
         for (int i = 0; i < 1000; i++)
         {
-            for (int j = 0; j < 1000; j++)
+            for (int j = 0; j < 100; j++)
             {
-                ground[i, j] = new GameGrid();
-                ground[i, j].objectType = 0;
-                ground[i, j].item = null;
+                for (int k = 0; k < 1000; k++)
+                {
+                    ground[i, j, k] = new GameGrid();
+                    ground[i, j, k].objectType = 0;
+                    ground[i, j, k].item = null;
+                }
             }
         }
     }
@@ -36,9 +40,9 @@ public class WorldGrid : MonoBehaviour
     ///</summary>
     public bool CheckGridAvailable(Vector3 pos)
     {
-        Debug.Log("Grid(" + pos.x + ", " + pos.z + ") : " + ground[(int)pos.x + 500, (int)pos.z + 500].objectType);
+        Debug.Log("Grid(" + pos.x + ", " + pos.y + ", " + pos.z + ") : " + ground[(int)pos.x + 500, (int)pos.y, (int)pos.z + 500].objectType);
 
-        if (ground[(int)pos.x + 500, (int)pos.z + 500].objectType == 0)//グリッドをずらすのではなく、クリックポイントを+500ずらしている。
+        if (ground[(int)pos.x + 500, (int)pos.y, (int)pos.z + 500].objectType == 0)//グリッドをずらすのではなく、クリックポイントを+500ずらしている。
         {
             Debug.Log("CheckGridAvailable true");
             return true;
@@ -51,9 +55,9 @@ public class WorldGrid : MonoBehaviour
     }
     public GameObject GetGridItem(Vector3 pos)
     {
-        Debug.Log("Grid(" + pos.x + ", " + pos.z + ") : " + ground[(int)pos.x + 500, (int)pos.z + 500].objectType);
+        Debug.Log("Grid(" + pos.x + ", " + pos.y + ", " + pos.z + ") : " + ground[(int)pos.x + 500, (int)pos.y, (int)pos.z + 500].objectType);
 
-        if (ground[(int)pos.x + 500, (int)pos.z + 500].objectType == 0)//グリッドをずらすのではなく、クリックポイントを+500ずらしている。
+        if (ground[(int)pos.x + 500, (int)pos.y, (int)pos.z + 500].objectType == 0)//グリッドをずらすのではなく、クリックポイントを+500ずらしている。
         {
             Debug.Log("No Object");
             return null;
@@ -61,7 +65,7 @@ public class WorldGrid : MonoBehaviour
         else
         {
             Debug.Log("Yes Object");
-            return ground[(int)pos.x + 500, (int)pos.z + 500].item;
+            return ground[(int)pos.x + 500, (int)pos.y, (int)pos.z + 500].item;
         }
     }
 
@@ -70,8 +74,8 @@ public class WorldGrid : MonoBehaviour
     ///</summary>
     public void SetValueToWorldGrid(Vector3 pos, GameObject obj)
     {
-        ground[(int)pos.x + 500, (int)pos.z + 500].objectType = obj.GetComponent<ObjectInfo>().objectType;
-        ground[(int)pos.x + 500, (int)pos.z + 500].item = obj;
+        ground[(int)pos.x + 500, (int)pos.y + 500, (int)pos.z + 500].objectType = obj.GetComponent<ObjectInfo>().objectType;
+        ground[(int)pos.x + 500, (int)pos.y + 500, (int)pos.z + 500].item = obj;
         Debug.Log("ワールドグリッドに登録しました。");
     }
 

@@ -6757,6 +6757,7 @@ GameObject:
   - component: {fileID: 7706231642584975356}
   - component: {fileID: 5574355272477609560}
   - component: {fileID: 1494645170}
+  - component: {fileID: 8777697570050130979}
   m_Layer: 0
   m_Name: unitychan
   m_TagString: Untagged
@@ -6928,6 +6929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d494ba262ba4c35a0ed05bf5aab490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myName: 
 --- !u!136 &5574355272477609560
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6954,6 +6956,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c969a7ac3d44a698611c361c50c39e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8777697570050130979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706231642584975353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc327a79a3ecc42da82c6c11665896bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block: {fileID: 1392933134637887725, guid: 71eaed1de4c144e4eb10b7bb085de936, type: 3}
 --- !u!1 &7706231642584975355
 GameObject:
   m_ObjectHideFlags: 0

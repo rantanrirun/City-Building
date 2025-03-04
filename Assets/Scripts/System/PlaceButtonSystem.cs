@@ -7,6 +7,7 @@ public class PlaceButtonSystem : MonoBehaviour
 {
     private ClickPoint cp;
     public GameObject block;
+    public bool isDelete;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,13 @@ public class PlaceButtonSystem : MonoBehaviour
     }
     void OnButtonClick()
     {
-        cp.item = block;
+        if (isDelete && block == null)
+        {
+            cp.item = null;
+        }
+        else if (block != null)
+        {
+            cp.item = block;
+        }
     }
 }

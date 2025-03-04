@@ -9,6 +9,7 @@ public class TaskList : MonoBehaviour
     {
         public Vector3 position;
         public GameObject block;
+        public bool isPlace;
     }
     Queue<BlockInfo> blockSetTasks;
     // Start is called before the first frame update
@@ -26,12 +27,13 @@ public class TaskList : MonoBehaviour
     ///<summary>
     ///置きたい位置とブロックという情報をQueueに追加。
     ///</summary>
-    public void EnQueueBlockSet(Vector3 position, GameObject block)
+    public void EnQueueBlockSet(Vector3 position, GameObject block, bool isPlaces)
     {
         targetPos = position;
         BlockInfo temp = new BlockInfo();//tempという場所を用意、中身はまだない。
         temp.position = targetPos;//tempのpositionという場所にtargetPosという情報を入れた。
         temp.block = block;//tempのblockという場所にblockという情報を入れた。
+        temp.isPlace = isPlaces;
         blockSetTasks.Enqueue(temp);//tempをblockSetTasksに追加。
     }
     /// <summary>

@@ -44,14 +44,9 @@ public class DeleteObject : MonoBehaviour
     ///</summary>
     public void DeleteBlock(Vector3 position)
     {
-        if (block == null)//blockが何もない場合(バグ対策)
-        {
-            Debug.Log("置く物ないよ");
-            return;
-        }
         if (!wg.CheckGridAvailable(position))
         {
-            Debug.Log("配置済み");
+            Debug.Log("消す物発見");
             Destroy(wg.GetGridItem(position));
             placed = true;
         }
