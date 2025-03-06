@@ -34,6 +34,7 @@ public class ClickPoint : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.GetComponent<Villager>())
                 {
                     villager = hit.collider.gameObject.GetComponent<Villager>();

@@ -6,7 +6,7 @@ using UnityEngine;
 public class WorldGrid : MonoBehaviour
 {
     [SerializeField]
-    public GameGrid[,,] ground = new GameGrid[1000, 100, 1000];
+    public GameGrid[,,] ground = new GameGrid[1000, 10, 1000];
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class WorldGrid : MonoBehaviour
     {
         for (int i = 0; i < 1000; i++)
         {
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j < 10; j++)
             {
                 for (int k = 0; k < 1000; k++)
                 {
@@ -74,8 +74,8 @@ public class WorldGrid : MonoBehaviour
     ///</summary>
     public void SetValueToWorldGrid(Vector3 pos, GameObject obj)
     {
-        ground[(int)pos.x + 500, (int)pos.y + 500, (int)pos.z + 500].objectType = obj.GetComponent<ObjectInfo>().objectType;
-        ground[(int)pos.x + 500, (int)pos.y + 500, (int)pos.z + 500].item = obj;
+        ground[(int)pos.x + 500, (int)pos.y, (int)pos.z + 500].objectType = obj.GetComponent<ObjectInfo>().objectType;
+        ground[(int)pos.x + 500, (int)pos.y, (int)pos.z + 500].item = obj;
         Debug.Log("ワールドグリッドに登録しました。");
     }
 

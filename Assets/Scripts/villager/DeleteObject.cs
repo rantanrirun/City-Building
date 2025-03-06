@@ -53,7 +53,7 @@ public class DeleteObject : MonoBehaviour
         else
         {
             Debug.Log("消す物ないよ");
-            return;
+            placed = true;
         }
         villager.SetFree(true);
     }
