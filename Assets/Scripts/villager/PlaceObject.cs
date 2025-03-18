@@ -88,7 +88,9 @@ public class PlaceObject : MonoBehaviour
     ///</summary>
     public void SetPlaceBlock(TaskList.BlockInfo info)
     {
-        position = info.position;
+        Vector3 placePos = info.position;
+        placePos.y += 0.5f;
+        position = placePos;
         block = info.block;
     }
 }

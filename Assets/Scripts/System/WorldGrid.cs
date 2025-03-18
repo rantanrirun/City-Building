@@ -79,6 +79,21 @@ public class WorldGrid : MonoBehaviour
         Debug.Log("ワールドグリッドに登録しました。");
     }
 
+    ///<summary>
+    ///上にブロックが置かれているか確認するメソッド。
+    ///</summary>
+    public bool GetPutedBox(Vector3 pos)
+    {
+        if (ground[(int)pos.x + 500, (int)pos.y + 1, (int)pos.z + 500].objectType == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     [Serializable]
     public class GameGrid
     {

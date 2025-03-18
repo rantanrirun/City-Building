@@ -18,6 +18,8 @@ public class ShowGrid : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.Log(hit.collider.gameObject.name);
+            Debug.Log(hit.point);
             targetPosition = hit.point;
             targetPosition = new Vector3(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y), Mathf.RoundToInt(targetPosition.z));
             //targetPosition += new Vector3(0.5f, 0.01f, 0.5f);
